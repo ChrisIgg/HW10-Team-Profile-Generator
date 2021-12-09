@@ -39,15 +39,16 @@ function getEmployeeInfo() {
       );
 
       teamArray.push(newManager);
-      console.log(teamArray);
+      console.log(teamArray, "Team Array after Manager Added");
 
       inquirer
         .prompt([
           {
             type: "list",
-            message: "Would you like to add another employee?",
+            message:
+              "Would you like to add another employee or finish the team?",
             name: "addEmployee",
-            choices: ["Manager", "Engineer", "Intern"],
+            choices: ["Manager", "Engineer", "Intern", "Create Team"],
           },
         ])
         .then(function ({ addEmployee }) {
@@ -57,12 +58,12 @@ function getEmployeeInfo() {
             addEngineer();
           } else if (addEmployee === "Intern") {
             addIntern();
+          } else if (addEmployee === "Create Team") {
+            finishTeam();
           }
         });
     });
 }
-
-getEmployeeInfo();
 
 function addEngineer() {
   inquirer
@@ -88,32 +89,34 @@ function addEngineer() {
         name: "github",
       },
     ])
-    .then(function ({ employeeName, EmployeeID, employeeEmail, github }) {
+    .then(function ({ employeeID, employeeName, employeeEmail, github }) {
       const newEngineer = new Engineer(
+        employeeID,
         employeeName,
-        EmployeeID,
         employeeEmail,
         github
       );
       teamArray.push(newEngineer);
-      console.log(teamArray);
+      console.log(teamArray, "TeamArray after Enginner Added");
       inquirer
         .prompt([
           {
             type: "list",
-            message: "Would you like to add another employee?",
+            message:
+              "Would you like to add another employee or finish the team?",
             name: "addEmployee",
-            choices: ["Manager", "Engineer", "Intern"],
+            choices: ["Manager", "Engineer", "Intern", "Create Team"],
           },
         ])
         .then(function ({ addEmployee }) {
-          console.log(".then: ", addEmployee);
           if (addEmployee === "Manager") {
             getEmployeeInfo();
           } else if (addEmployee === "Engineer") {
             addEngineer();
           } else if (addEmployee === "Intern") {
             addIntern();
+          } else if (addEmployee === "Create Team") {
+            finishTeam();
           }
         });
     });
@@ -143,33 +146,124 @@ function addIntern() {
         name: "school",
       },
     ])
-    .then(function ({ employeeName, EmployeeID, employeeEmail, school }) {
-      const newEngineer = new Engineer(
+    .then(function ({ employeeID, employeeName, employeeEmail, school }) {
+      const newIntern = new Intern(
+        employeeID,
         employeeName,
-        EmployeeID,
         employeeEmail,
         school
       );
-      teamArray.push(newEngineer);
-      console.log(teamArray);
+      teamArray.push(newIntern);
+      console.log(teamArray, "Intern Add");
       inquirer
         .prompt([
           {
             type: "list",
-            message: "Would you like to add another employee?",
+            message:
+              "Would you like to add another employee or finish the team?",
             name: "addEmployee",
-            choices: ["Manager", "Engineer", "Intern"],
+            choices: ["Manager", "Engineer", "Intern", "Create Team"],
           },
         ])
         .then(function ({ addEmployee }) {
-          console.log(".then: ", addEmployee);
           if (addEmployee === "Manager") {
             getEmployeeInfo();
           } else if (addEmployee === "Engineer") {
             addEngineer();
           } else if (addEmployee === "Intern") {
             addIntern();
+          } else if (addEmployee === "Create Team") {
+            finishTeam();
           }
         });
     });
 }
+
+function finishTeam() {
+  addCards = addEmployeeCard();
+  fs.writeFile(
+    "index.html",
+    `<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Team Profile Generator</title>
+        <link rel="stylesheet" href="/public/css/styles.css" />
+      </head>
+    
+      <header class="header">
+        <h1>My Team</h1>
+        <nav>
+          <!-- go to each employee type -->
+        </nav>
+      </header>
+      <body>
+        ${addCards}
+      </body>
+    </html>`,
+    (err) => (err ? console.error(err) : console.log("HTML logged"))
+  );
+}
+
+var addEmployeeCard = function (teamArray) {
+  console.log(teamArray, "team array before loop");
+  for (let i = 0; i < teamArray.length; i++) {
+    console.log("this is working");
+  }
+};
+
+// function addEmployeeCard() {
+//   for (let i=0; i < )
+// }
+// function addEmployeeCard() {
+//   console.log(teamArray[0]);
+//   return teamArray[0];
+// }
+// use team array
+
+// for (let i = 0; i < teamArray.length; i++) {
+//   if (role === "Manager") {
+//     createManager();
+//   } else if (role === "Engineer") {
+//     createEngineer();
+//   } else if (role === "Intern") {
+//     createIntern();
+//   }
+//
+
+// }
+// const addEmployeeCard = function (arr, target) {
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] === target) {
+//       return i;
+//     } else {
+//       return -1;
+//     }
+//   }
+// };
+//
+
+// const name = this.name
+// const id = this.id
+// const email = this.email
+// const role =
+// // let info = ""
+// if (role === "Engineer") {
+//   const github = employee.getGithub();
+
+// }
+
+//   return `<div class="card">
+//   <hi>*Name Here*</hi>
+//   <h2></h2>
+//   <div class="container">
+//     <h4>
+//       <b>*Jobs Here*</b>
+//     </h4>
+//   </div>
+// </div>`;
+// }
+
+getEmployeeInfo();
