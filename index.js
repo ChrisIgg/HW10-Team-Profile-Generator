@@ -30,7 +30,7 @@ function getEmployeeInfo() {
         name: "officeNumber",
       },
     ])
-    .then(function ({ employeeName, employeeID, employeeEmail, officeNumber }) {
+    .then(function ({ employeeID, employeeName, employeeEmail, officeNumber }) {
       const newManager = new Manager(
         employeeID,
         employeeName,
@@ -180,7 +180,7 @@ function addIntern() {
 }
 
 function finishTeam() {
-  addCards = addEmployeeCard();
+  addCards = addEmployeeCard(teamArray);
   fs.writeFile(
     "index.html",
     `<!DOCTYPE html>
@@ -207,63 +207,86 @@ function finishTeam() {
   );
 }
 
-var addEmployeeCard = function (teamArray) {
+// var addEmployeeCard = function () {
+
+function addEmployeeCard() {
   console.log(teamArray, "team array before loop");
+  // make a string to hold the emplyee cards
+  let result = "";
+  // add the each employee card to the string
   for (let i = 0; i < teamArray.length; i++) {
     console.log("this is working");
+    let employee = teamArray[i];
+    console.log(employee.createCard());
+    result += employee.createCard();
+
+    // let cardItem = teamArray[teamArray.length - 1];
+    // if (cardItem.role === "Manager") {
+    //   createManager(cardItem);
+    //   teamArray.pop();
+    //   addEmployeeCard(teamArray);
+    // } else if (cardItem.role === "Engineer") {
+    //   createEngineer(cardItem);
+    //   teamArray.pop();
+    //   addEmployeeCard(teamArray);
+    // } else if (cardItem.role === "Intern") {
+    //   createIntern(cardItem);
+    //   teamArray.pop();
+    //   addEmployeeCard(teamArray);
+    // } else if (cardItem === -1) {
+    //   return console.log("completed iterations");
+    // }
   }
-};
-
-// function addEmployeeCard() {
-//   for (let i=0; i < )
-// }
-// function addEmployeeCard() {
-//   console.log(teamArray[0]);
-//   return teamArray[0];
-// }
-// use team array
-
-// for (let i = 0; i < teamArray.length; i++) {
-//   if (role === "Manager") {
-//     createManager();
-//   } else if (role === "Engineer") {
-//     createEngineer();
-//   } else if (role === "Intern") {
-//     createIntern();
-//   }
-//
-
-// }
-// const addEmployeeCard = function (arr, target) {
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i] === target) {
-//       return i;
-//     } else {
-//       return -1;
-//     }
-//   }
-// };
-//
-
-// const name = this.name
-// const id = this.id
-// const email = this.email
-// const role =
-// // let info = ""
-// if (role === "Engineer") {
-//   const github = employee.getGithub();
-
-// }
-
-//   return `<div class="card">
-//   <hi>*Name Here*</hi>
-//   <h2></h2>
-//   <div class="container">
-//     <h4>
-//       <b>*Jobs Here*</b>
-//     </h4>
-//   </div>
-// </div>`;
-// }
-
+  // return the employee cards
+  return result;
+}
 getEmployeeInfo();
+
+// function createManager() {
+//   return `<div class="card">
+//       <h2>${this.name}</h2>
+//       <h3>Manager</h3>
+//       <div class="container">
+//         <h4>
+//           <b>*Office Number = ${this.officeNumber}*</b>
+//           <b>${this.email}</b>
+//         </h4>
+//       </div>
+//     </div>`;
+// }
+
+// function createEngineer() {
+//   return `<div class="card">
+//       <h2>${this.name}</h2>
+//       <h3>Manager</h3>
+//       <div class="container">
+//         <h4>
+//           <b>*Github = ${this.github}*</b>
+//           <b>${this.email}</b>
+//         </h4>
+//       </div>
+//     </div>`;
+// }
+
+// function createIntern() {
+//   return `<div class="card">
+//       <h2>${this.name}</h2>
+//       <h3>Intern</h3>
+//       <div class="container">
+//         <h4>
+//           <b>School = ${this.school}</b>
+//           <b>${this.email}</b>
+//         </h4>
+//       </div>
+//     </div>`;
+// }
+
+// let myname = "chris";
+
+// // chris!
+
+// var addition = "!";
+
+// // myname = myname + addition
+// myname += addition;
+// employeeCards += someManager.renderEmployeeCard();

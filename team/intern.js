@@ -2,7 +2,7 @@ const Employee = require("./employee");
 
 class Intern extends Employee {
   constructor(id, name, email, school) {
-    super(id, name, email);
+    super(id, name, email, "Intern");
     this.school = school;
   }
   createIntern() {
@@ -11,7 +11,7 @@ class Intern extends Employee {
     <h3>Manager</h3>
     <div class="container">
       <h4>
-        <b>*Office Number = ${this.officeNumber}*</b>
+        <b>*School: ${this.school}*</b>
         <b>${this.email}</b>
        \
       </h4>
