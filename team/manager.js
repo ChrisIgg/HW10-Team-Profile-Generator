@@ -11,7 +11,7 @@ class Manager extends Employee {
       <h3>Manager</h3>
       <div class="container">
         <h4>
-          <b>*Office Number: ${this.officeNumber}*</b>
+          <b>Office Number: ${this.officeNumber}</b>
           <b>${this.email}</b>
         </h4>
       </div>

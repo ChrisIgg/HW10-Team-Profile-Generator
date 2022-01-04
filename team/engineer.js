@@ -8,10 +8,10 @@ class Engineer extends Employee {
   createCard() {
     return `<div class="card">
     <h2>${this.name}</h2>
-    <h3>Manager</h3>
+    <h3>Engineer</h3>
     <div class="container">
       <h4>
-        <b>*Github: ${this.github}*</b>
+        <b>Github: ${this.github}</b>
         <b>${this.email}</b>
       </h4>
     </div>

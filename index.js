@@ -217,25 +217,8 @@ function addEmployeeCard() {
   for (let i = 0; i < teamArray.length; i++) {
     console.log("this is working");
     let employee = teamArray[i];
-    console.log(employee.createCard());
-    result += employee.createCard();
 
-    // let cardItem = teamArray[teamArray.length - 1];
-    // if (cardItem.role === "Manager") {
-    //   createManager(cardItem);
-    //   teamArray.pop();
-    //   addEmployeeCard(teamArray);
-    // } else if (cardItem.role === "Engineer") {
-    //   createEngineer(cardItem);
-    //   teamArray.pop();
-    //   addEmployeeCard(teamArray);
-    // } else if (cardItem.role === "Intern") {
-    //   createIntern(cardItem);
-    //   teamArray.pop();
-    //   addEmployeeCard(teamArray);
-    // } else if (cardItem === -1) {
-    //   return console.log("completed iterations");
-    // }
+    result += employee.createCard();
   }
   // return the employee cards
   return result;
@@ -290,3 +273,20 @@ getEmployeeInfo();
 // // myname = myname + addition
 // myname += addition;
 // employeeCards += someManager.renderEmployeeCard();
+
+// let cardItem = teamArray[teamArray.length - 1];
+// if (cardItem.role === "Manager") {
+//   createManager(cardItem);
+//   teamArray.pop();
+//   addEmployeeCard(teamArray);
+// } else if (cardItem.role === "Engineer") {
+//   createEngineer(cardItem);
+//   teamArray.pop();
+//   addEmployeeCard(teamArray);
+// } else if (cardItem.role === "Intern") {
+//   createIntern(cardItem);
+//   teamArray.pop();
+//   addEmployeeCard(teamArray);
+// } else if (cardItem === -1) {
+//   return console.log("completed iterations");
+// }
