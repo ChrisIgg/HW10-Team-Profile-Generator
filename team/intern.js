@@ -5,7 +5,7 @@ class Intern extends Employee {
     super(id, name, email, "Intern");
     this.school = school;
   }
-  createIntern() {
+  createCard() {
     return `<div class="card">
     <h2>${this.name}</h2>
     <h3>Intern</h3>
